@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 09</title>
+</head>
+<body>
+    <h2>Raiz quadrada</h2>
+    <input type="number" id="numero" placeholder="Digite um número: ">
+    <button onclick="RaizQuadrada()">Ver raiz quadrada</button>
+
+    <div id="resultado"></div>
+
+    <style>
+        html{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        body{
+            border: 1px solid #ccc;
+            max-width: 800px;
+            text-align: center;
+            padding: 30px 20px 50px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h2{
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid black;
+            color:rgb(202, 146, 215);
+        }
+
+        input{
+            font-style: italic;
+            padding: 8px 8px;
+            border-radius: 10px;
+            border: none;
+            border: 1px solid #ccc;
+            background-color: rgb(238, 238, 238);
+            width: 200px;
+        }
+
+        button{
+            padding: 7px 10px;
+            border-radius: 10px;
+            margin-top: 15px;
+            border: none;
+            border: 1px solid #ccc;
+            background-color: rgb(127, 91, 175);
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover{
+            cursor: pointer;
+            background-color: rgb(87, 42, 141);
+            color: white;
+            border: 1px solid #000000;
+            transition: 0.5s ease;
+        }
+
+        #resultado{
+            margin-top: 10px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: 500;
+        }
+    </style>
+
+    <script>
+        const RaizQuadrada = () => {
+            let val = parseInt(document.getElementById('numero').value);
+            let calc = Math.sqrt(val);
+
+            document.getElementById('resultado').innerHTML = `A raiz quadrada de ${val} é ${calc.toFixed(2)}`;
+        };
+    </script>
+</body>
+</html>

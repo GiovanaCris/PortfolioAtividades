@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 10</title>
+</head>
+<body>
+    <h2>Calculo de imposto de renda</h2>
+    <input type="Number" id="salario" placeholder="Digite uma faixa salarial: ">
+    <button onclick="imposto()">Ver imposto</button>
+
+    <div id="resultado"></div>
+
+    <style>
+        html{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        body{
+            border: 1px solid #ccc;
+            max-width: 400px;
+            text-align: center;
+            padding: 30px 20px 50px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h2{
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            border: 1px solid rgb(220, 220, 220);
+            -webkit-text-stroke: 0.8px black;
+            background: linear-gradient(to left,rgb(104, 97, 202), rgb(164, 160, 221));
+            background-clip: text;
+            color: transparent;
+        }
+
+        input {
+            padding: 8px 8px;
+            border: none;
+            border-radius: 15px;
+            border: 1px solid #ccc;
+            background-color: #eaeaea;
+            margin-top: 10px;
+        }
+
+        input:focus {
+            background-color: #dfdfdf;
+            transition: 0.5s ease;
+        }
+
+        button{
+            padding: 8px 8px;
+            margin-top: 10px;
+            border: none;
+            border: 1px solid #ccc;
+            background-color: rgb(104, 97, 202);
+            color: white;
+            font-weight: 600;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+
+        button:focus {
+            background-color: rgb(84, 77, 180);
+        }
+
+        #resultado {
+            font-family: sans-serif;
+            margin-top: 10px;
+            text-shadow: 2px 2px 4px rgba(106, 106, 106, 0.5);
+        }
+    </style>
+
+    <script>
+       const imposto = () => {
+        let salario = parseInt(document.getElementById("salario").value)
+        let resultado = document.getElementById("resultado");
+
+        if (salario < 0) {
+            resultado.innerHTML = "Insira um valor válido!";
+            return;
+        }
+
+        const calculoIR = (salario) => {
+            let imposto = 0;
+
+            if (salario <= 2112.00) {
+                imposto = 0;
+            } else if (salario <= 2826.65) {
+                imposto = salario * 0.075 - 158.40;
+            } else if (salario <= 3751.05) {
+                imposto = salario * 0.15 - 370.40;
+            } else if (salario <= 4664.68) {
+                imposto = salario * 0.225 - 651.73;
+            } else {
+                imposto = salario * 0.275 - 884.96;
+            }
+            return imposto;
+        };
+
+        const valorImposto = calculoIR(salario);
+
+        if (valorImposto === 0) {
+            resultado.innerHTML = "Você não possui imposto de renda."
+        } else{
+            resultado.innerHTML = `O valor do imposto de renda é R$ ${valorImposto.toFixed(2)}.`; //to fixed pega as duas primeiras casas decimais
+        }
+       }
+    </script>
+</body>
+</html>

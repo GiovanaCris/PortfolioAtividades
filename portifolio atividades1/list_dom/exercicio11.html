@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 11</title>
+</head>
+<body>
+    <h2>Calculo INSS</h2>
+    <input type="number" id="salario" placeholder="Digite um salário: ">
+    <button onclick="Calcular()">Ver INSS</button>
+
+    <div id="resultado"></div>
+
+    <style>
+        html{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        body{
+            border: 1px solid #ccc;
+            max-width: 800px;
+            text-align: center;
+            padding: 30px 100px 50px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h2{
+            font-family: Arial, Helvetica, sans-serif;
+            color: rgba(100, 148, 237, 0.732);
+            -webkit-text-stroke: 0.8px rgb(93, 93, 93);
+            text-shadow: 2px 2px 4px rgba(64, 64, 64, 0.5);
+        }
+
+        input {
+            padding: 8px 8px;
+            border-radius: 15px;
+            border: none;
+            border: 1px solid rgb(93, 93, 93);
+            background-color: rgb(226, 231, 255);
+        }
+
+        #salario::placeholder{
+            color: rgb(81, 81, 81);
+            font-style: italic;
+        }
+
+        button {
+            padding: 8px 15px;
+            margin-top: 10px;
+            border-radius: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            color: white;
+            border: 1px solid rgb(93, 93, 93);
+            background-color: rgba(100, 148, 237, 0.627);
+        }
+
+        button:focus{
+            background-color: rgba(100, 148, 237, 0.793);
+            transition: 0.5s ease-out;
+        }
+
+        #resultado {
+            margin-top: 10px;
+            font-size: 17px;
+            font-family: serif;
+        }
+    </style>
+
+    <script>
+        const Calcular = () => {
+            const salario = parseFloat(document.getElementById("salario").value);
+            const resultado = document.getElementById("resultado");
+
+            if (salario <= 0) {
+                resultado.innerHTML = 'Digite um salário válido.';
+                return;
+            }
+
+            const desconto = calcularInss(salario);
+            resultado.innerHTML = `Desconto do INSS: R$ ${desconto.toFixed(2)}`;
+        };
+
+        const calcularInss = (salario) => {
+            let desconto = 0;
+
+            if (salario <= 1100) {
+                desconto = salario * 0.075;
+            } else if (salario <= 2203.48) {
+                desconto = salario * 0.09;
+            } else if (salario <= 3305.22) {
+                desconto = salario * 0.12;
+            } else if (salario <= 6433.57) {
+                desconto = salario * 0.14;
+            } else {
+                desconto = 6433.57 * 0.14;
+            }
+            return desconto;
+        }
+    </script>
+</body>
+</html>

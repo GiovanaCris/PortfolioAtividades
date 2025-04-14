@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 09</title>
+</head>
+<body>
+    <h2>Formulário de Cadastro</h2>
+    <form action="/submit" method="POST">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" name="nome" required placeholder="Digite seu nome:"> <!--required diz que é um campo obrigatório-->
+
+        <label for="endereco">Endereço</label>
+        <input type="text" id="endereco" name="endereco" required placeholder="Digite seu endereço">
+
+        <label for="sexo">Sexo</label>
+        <div class="radio-group">
+            <label><input type="radio" name="sexo" value="masculino"> Masculino</label>
+            <label><input type="radio" name="sexo" value="feminino"> Feminino</label>
+            <label><input type="radio" name="sexo" value="outro"> Outro</label>
+        </div>
+
+        <label for="telefone">Telefone</label>
+        <input type="tel" id="telefone" name="telefone" required placeholder="Digite seu telefone">
+
+        <label for="celular">Celular</label>
+        <input type="tel" id="celular" name="celular" required placeholder="Digite seu celular">
+
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" required placeholder="Digite seu e-mail">
+
+        <button type="button" onclick="cadastro()">Enviar</button>
+    </form>
+
+    <style>
+        html{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        body{
+            border: 1px solid #ccc;
+            width: 400px;
+            padding: 30px 20px 50px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        form{
+            display: flex;
+            flex-direction: column;
+            line-height: 20px;
+        }
+
+        h2{
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-weight: 900;
+        }
+
+        label{
+            margin-top: 15px;
+            font-family: sans-serif;
+            font-size: 15px;
+        }
+
+        input{
+            font-style: italic;
+            padding: 8px 8px;
+            border-radius: 10px;
+            border: none;
+            border: 1px solid #ccc;
+            background-color: rgb(243, 243, 243);
+        }
+
+        input:focus{
+            background-color: rgb(216, 216, 216);
+            transition: 0.5s ease;
+        }
+
+        button{
+            padding: 8px 8px;
+            margin-top: 30px;
+            width: 200px;
+            margin-left: 10%;
+            border: none;
+            color: white;
+            font-weight: 600;
+            background-color: rgb(61, 0, 118);
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        button:focus{
+            background-color: rgb(109, 43, 171);
+        }
+    </style>
+    
+    <script>
+        const cadastro = () => {
+            let nome_user = document.getElementById("nome");
+            let endereco_user = document.getElementById("endereco");
+            const sexo_user = document.getElementsByName("sexo");
+            let telefone_user = document.getElementById("telefone");
+            let celular_user = document.getElementById("celular");
+            let email_user = document.getElementById("email");
+
+            let sexoSelecionado = "";
+            for (let opcao of sexo_user) {
+                if (opcao.checked) {
+                    sexoSelecionado = opcao.value;
+                    break;
+                }
+            }
+
+            if (
+                !nome_user.value.trim() &&
+                !endereco_user.value.trim() &&
+                !telefone_user.value.trim() && 
+                !celular_user.value.trim() &&
+                !email_user.value.trim() &&
+                !sexoSelecionado
+            ) {
+                alert("Nenhum campo preenchido!");
+                return;
+            }
+
+            if (!nome_user.value.trim()) {
+                alert("O campo 'Nome' está vazio.");
+                nome_user.focus();
+                return;
+            }
+
+            if (!endereco_user.value.trim()) {
+                alert("O campo 'Endereço' está vazio.");
+                endereco_user.focus();
+                return;
+            }
+
+            if (!sexoSelecionado) {
+                alert("Por favor, selecione uma opção de 'Sexo'.");
+                return;
+            }
+
+            if (!telefone_user.value.trim()) {
+                alert("O campo 'Telefone' está vazio.");
+                telefone_user.focus();
+                return;
+            }
+
+            if (!celular_user.value.trim()) {
+                alert("O campo 'Celular' está vazio.");
+                celular_user.focus();
+                return;
+            }
+
+            if (!email_user.value.trim()) {
+                alert("O campo 'E-mail' está vazio.");
+                email_user.focus();
+                return;
+            }
+ 
+            alert(`Obrigada ${nome_user.value}, seus dados foram enviados com êxito!`);
+        };
+    </script>
+</body>
+</html>

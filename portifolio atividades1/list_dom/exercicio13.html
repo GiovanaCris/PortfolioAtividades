@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 13</title>
+</head>
+<body>
+    <h2>Simulador de financiamento</h2>
+    <input type="number" id="preco" placeholder="Digite o valor do financiamento:">
+    <input type="number" id="taxa" placeholder="Digite a taxa mensal:">
+    <input type="number" id="parcelas" placeholder="Digite a quantidade de parcelas:">
+    <button onclick="calcular_parcelas()">Calcular</button>
+
+    <div id="resultado"></div>
+
+    <style>
+         html{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        body{
+            border: 1px solid #ccc;
+            max-width: 800px;
+            text-align: center;
+            padding: 30px 100px 50px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h2{
+            background: linear-gradient(to left,rgb(104, 97, 202), rgb(126, 121, 185));
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-clip: text;
+            color: transparent;
+        }
+
+        input {
+            padding: 8px 40px;
+            border: none;
+            border-radius: 15px;
+            border: 1px solid #ccc;
+            background-color: rgb(239, 239, 239);
+            margin-top: 10px;
+        }
+
+        input:focus{
+            background-color: #e7e7e7;
+        }
+
+        input::placeholder{
+            margin-left: -80px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 8px 20px;
+            border-radius: 15px;
+            border: none;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            background-color: rgb(177, 173, 233);
+        }
+
+        #resultado{
+            margin-top: 15px;
+            font-family: sans-serif;
+        }
+
+    </style>
+
+    <script>
+        const calcular_parcelas = () => {
+            const val_preco = parseFloat(document.getElementById("preco").value);
+            const qtd_parcelas = parseInt(document.getElementById("parcelas").value);
+            const val_taxa = parseInt(document.getElementById("taxa").value);
+            const res = document.getElementById("resultado");
+
+            if (isNaN(val_preco) || isNaN(val_taxa) || isNaN(qtd_parcelas) || val_preco <= 0 || val_taxa < 0 || qtd_parcelas <= 0) {
+            alert("Preencha corretamente todos os campos com valores válidos.");
+            return;
+            }
+
+            const taxa_decimal = val_taxa / 100;
+            const valor_parcela = (val_preco * taxa_decimal) / (1 - Math.pow(1  + taxa_decimal, -qtd_parcelas));
+
+            res.innerHTML = `O valor das parcelas é de R$ ${valor_parcela.toFixed(2)}`;
+        };
+    </script>
+</body>
+</html>

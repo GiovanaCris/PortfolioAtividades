@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 12</title>
+</head>
+<body>
+    <h2>Calculo juros compostos</h2>
+    <input type="number" id="capital" placeholder="Digite um valor de capital:">
+    <input type="number" id="taxa" placeholder="Digite uma taxa:">
+    <input type="number" id="periodo" placeholder="Digite o período:">
+    <button onclick="calculo_juros()">Calcular juros</button>
+
+    <div id="resultado"></div>
+
+    <style>
+        html{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        body{
+            border: 1px solid #ccc;
+            max-width: 800px;
+            text-align: center;
+            padding: 30px 100px 50px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h2{
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            color: rgb(90, 0, 173);
+        }
+        
+        input {
+            padding: 8px 20px;
+            border: none;
+            border: 1px solid #ccc;
+            background-color: rgb(239, 239, 239);
+            margin-top: 10px;
+        }
+
+        input::placeholder{
+            margin-left: -10px;
+        }
+
+        button {
+            padding: 8px 8px;
+            margin-top: 15px;
+            background-color: rgba(89, 0, 173, 0.574);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 15px;
+        }
+
+        button:focus{
+            background-color: rgba(88, 3, 167, 0.721);
+            transition: 0.5s ease;
+        }
+    </style>
+
+    <script>
+        const calculo_juros = () => {
+            const cap = parseFloat(document.getElementById("capital").value);
+            const tax = parseFloat(document.getElementById("taxa").value);
+            const per = parseInt(document.getElementById("periodo").value);
+            const res = document.getElementById("resultado");
+
+            if (!cap || !tax || !per) {
+                alert ("Preencha corretamente todos os campos.");
+                return;
+            }
+
+            const montante = cap * (1 + tax / 100) ** per;
+            const juros = montante - cap;
+
+            res.innerHTML = `O montante é R$ ${montante.toFixed(2)} e os juros são R$ ${juros.toFixed(2)}`;
+        };
+    </script>
+
+</body>
+</html>

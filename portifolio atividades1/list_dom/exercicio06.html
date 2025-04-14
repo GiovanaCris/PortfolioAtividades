@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 06</title>
+</head>
+<body>
+    <h2>Conversor de horas para minutos</h2>
+    <input type="time" id="horas" placeholder="Digite um horário: ">
+    <button onclick="conversor()">Converter</button>
+
+    <div id="resultado"></div>
+
+    <style>
+        html{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        body{
+            border: 1px solid #ccc;
+            max-width: 400px;
+            text-align: center;
+            padding: 30px 20px 50px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h2{
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            color: rgb(143, 143, 208);
+        }
+
+        input{
+            font-style: italic;
+            padding: 8px 8px;
+            border-radius: 10px;
+            border: none;
+            border: 1px solid #ccc;
+            background-color: rgb(238, 238, 238);
+            width: 200px;
+        }
+
+        button{
+            padding: 7px 10px;
+            border-radius: 10px;
+            margin-top: 15px;
+            border: none;
+            border: 1px solid #ccc;
+            background-color: rgb(212, 212, 254);
+            cursor: pointer;
+        }
+
+        button:focus{
+            cursor: pointer;
+            background-color: rgb(168, 168, 240);
+            transition: 0.5s ease;
+        }
+
+        #resultado{
+            margin-top: 10px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
+
+    <script>
+        const conversor = () =>{
+            let valor = document.getElementById('horas').value;
+
+            if (!valor){
+                alert("Digite um horário válido!");
+                return;
+            }
+
+            let[horas, minutos] = valor.split(':').map(Number);
+            let totalMinutos = horas * 60 + minutos;
+
+            document.getElementById('resultado').innerHTML = `${horas}:${minutos}h em minutos é igual a ${totalMinutos} minutos`;
+        }
+    </script>
+</body>
+</html>
